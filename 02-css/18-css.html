@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .parent {
+            width: 500px;
+            height: 500px;
+            background: royalblue;
+        }
+        .son {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            border: 1px solid #333;
+        }
+
+        .son:nth-child(1){
+            position: relative;
+            z-index: 999;
+
+        }
+        .son:nth-child(2){
+            position: relative;
+            top: -20px;
+            left: 20px;
+            background: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="son">1</div>
+        <div class="son">2</div>
+        <div class="son">3</div>
+        <div class="son">4</div>
+    </div>
+</body>
+</html>

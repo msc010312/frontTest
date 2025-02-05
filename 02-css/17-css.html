@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section {
+            height: 5000px;
+        }
+
+        .parent {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            width: 500px;
+            height: 500px;
+            background: royalblue;
+            margin-top: 250px;
+        }
+
+        .son {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+            background: orange;
+            border: 1px solid #333;
+        }
+
+        .son:nth-child(1) {
+            position: relative;
+            left: 10px;
+            top: 10px;
+        }
+
+        .son:nth-child(2) {
+            position: absolute;
+            left: 100px;
+            top: 0;
+        }
+
+        .son:nth-child(3) {
+            position: fixed;
+            left: 250px;
+            top: 250px;
+        }
+
+        .son:nth-child(4) {
+            position: sticky;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="topHeader"></div>
+            <nav></nav>
+        </header>
+        <main>
+            <section>
+                <div class="parent">
+                    <div class="son">relative</div>
+                    <div class="son">absolute</div>
+                    <div class="son">fixed</div>
+                    <div class="son">sticky</div>
+                </div>
+            </section>
+        </main>
+        <footer></footer>
+    </div>
+</body>
+
+</html>

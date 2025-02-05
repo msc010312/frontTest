@@ -1,0 +1,113 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .wrapper {
+            width: 1280px;
+            height: 1080px;
+            margin: 0 auto;
+            border: 1px solid #333;
+            padding: 10px;
+        }
+
+        .parent {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            align-items: center;
+            flex-direction: column;
+            height: 150px;
+            border: 1px solid #333;
+        }
+
+        .child {
+            width: 120px;
+            height: 40px;
+            border: 1px solid #333;
+        }
+
+        .child:nth-child(1){
+            align-self: stretch;
+        }
+        .child:nth-child(2){
+            align-self: stretch;
+            height: 50px;
+        }
+
+        .child:nth-child(3){
+            align-self: flex-start;
+            height: 50px;
+        }
+
+        .child:nth-child(4){
+            align-self: flex-end;
+            height: 50px;
+        }
+
+        .parent2 {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+            flex-direction: row;
+            border: 1px solid #333;
+            flex-wrap: wrap;
+            padding: 15px;
+        }
+
+        .child2 {
+            border: 1px solid #333;
+            width: 200px;
+            height: 200px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="parent">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+            <div class="child">5</div>
+        </div>
+        <div class="parent2">
+            <div class="child2">1</div>
+            <div class="child2">2</div>
+            <div class="child2">3</div>
+            <div class="child2">4</div>
+            <div class="child2">5</div>
+            <div class="child2">6</div>
+            <div class="child2">7</div>
+            <div class="child2">8</div>
+            <div class="child2">9</div>
+            <div class="child2">10</div>
+            <div class="child2">11</div>
+            <div class="child2">12</div>
+            <div class="child2">13</div>
+            <div class="child2">14</div>
+            <div class="child2">15</div>
+            <div class="child2">16</div>
+            <div class="child2">17</div>
+            <div class="child2">18</div>
+            <div class="child2">19</div>
+            <div class="child2">20</div>
+        </div>
+    </div>
+</body>
+
+</html>

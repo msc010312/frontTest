@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper {
+            width: 1200px;
+            height: 900px;
+            border: 1px solid;
+            margin: 0 auto;
+            padding: 10px;
+        } 
+        .parent{
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            height: 150px;
+            border: 1px solid;
+        }
+        .child{
+            border: 1px solid;
+        }
+
+        .child:nth-child(1){
+            flex-grow: 2;
+            flex-shrink: 0;
+        }
+        .child:nth-child(2){
+            flex-grow: 2;
+        }
+        .child:nth-child(3){
+            flex-grow: 3;
+        }
+        .child:nth-child(4){
+            flex-grow: 4;
+        }
+        .child:nth-child(5){
+            flex-grow: 5;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="parent">
+            <div class="child">1</div>
+            <div class="child">2</div>
+            <div class="child">3</div>
+            <div class="child">4</div>
+            <div class="child">5</div>
+        </div>
+    </div>
+</body>
+</html>
