@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body{
+            overflow-x: hidden;
+            overflow: hidden;
+        }
+
+        div {
+            width: 400px;
+            height: 40px;
+            background: orange;
+            color: #fff;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #333;
+        }
+        div:nth-child(1){
+            animation: moving1 2s infinite alternate;
+        }
+        div:nth-child(2){
+            position: relative;
+            animation: moving2 2s infinite alternate;
+        }
+        @keyframes moving1{
+            from{
+                margin-left:100%;
+            }
+            to{
+                margin-left: 0;
+            }
+        }
+
+        @keyframes moving2 {
+            from {
+                top: 100%;
+            }
+            to {
+                top: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>hello world1</div>
+    <div>hello world2</div>
+</body>
+</html>

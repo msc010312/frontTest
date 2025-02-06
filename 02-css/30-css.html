@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            position: relative;
+            width: 100px;
+            height: 50px;
+            background: orange;
+            margin: 10px;
+            animation: moving 5s infinite alternate;
+        }
+        .d1{
+            animation: ease;
+        }
+        .d2{
+            animation: ease-in;
+        }
+        .d3{
+            animation: ease-out;
+        }
+        .d4{
+            animation: ease-in-out;
+        }
+        .d5{
+            animation: linear;
+        }
+        @keyframes moving {
+            from{
+                left: 0px;
+            }
+            to{
+                left: 1000px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="d1">ease</div>
+    <div class="d2">ease-in</div>
+    <div class="d3">ease-out</div>
+    <div class="d4">ease-in-out</div>
+    <div class="d5">linear</div>
+</body>
+</html>

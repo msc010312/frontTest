@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 200px;
+        }
+        .container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: royalblue;
+
+        }
+        .item {
+            width: 100px;
+            height: 100px;
+            background: orange;
+            transition: 1s;
+            transform: rotateY(0deg);
+        }
+        .item:hover{
+            transform: perspective(250px) rotateY(50deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="item"></div>
+    </div>
+</body>
+</html>

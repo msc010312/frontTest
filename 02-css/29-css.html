@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            border: 1px solid;
+            width: 150px;
+            height: 150px;
+            margin: 50px;
+            animation: 2s infinite alternate;
+        }
+        div:nth-child(1){
+            animation-name: moving1;
+        }
+        div:nth-child(2){
+            animation-name: moving2;
+        }
+        @keyframes moving1 {
+            from{
+                margin-left: 0;
+            }
+            to{
+                margin-left: 80%;
+            }
+            0%{
+                background: red;
+            }
+            25%{
+                background: orange;
+            }
+            50%{
+                background: yellow;
+            }
+            75%{
+                background: green;
+            }
+            100%{
+                background: blue;
+            }
+        }
+        @keyframes moving2 {
+            from{
+                margin-left: 80%;
+            }
+            to{
+                margin-left: 0;
+            }
+            0%{
+                background: red;
+                transform: rotate(180deg);
+            }
+            25%{
+                background: orange;
+                transform: rotate(-180deg);
+            }
+            50%{
+                background: yellow;
+            }
+            75%{
+                background: green;
+            }
+            100%{
+                background: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+</body>
+</html>
