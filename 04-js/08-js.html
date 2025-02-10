@@ -1,0 +1,92 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .status-block {
+            width: 500px;
+            height: 50px;
+            border: 1px solid #333;
+            padding: 5px;
+            margin-top: 10px;
+        }
+
+        .gauge {
+            width: 0;
+            height: 45px;
+            background: orange;
+            transition: ease-out .5s;
+        }
+    </style>
+</head>
+
+
+<button onclick="poppy.sound()">짖어!</button>
+<button onclick="poppy.toString()">확인</button>
+<hr>
+
+<button onclick="myCar.accel()">가속</button>
+<button onclick="myCar.break()">감속</button>
+<button onclick="myCar.status()">상태</button>
+<div class="status-block">
+    <div class="gauge"></div>
+</div>
+<script>
+    const poppy = {
+        name: "poppy",
+        kind: '포메라니안',
+        age: 1,
+        birth: "2025-01-01",
+
+        sound: function () {
+            alert(this.name + '이(가) 짖습니다')
+        },
+        toString: function () {
+            alert(`이름 : ${this.name}\n
+                나이 : ${this.age}\n
+                견종 : ${this.kind}`);
+        }
+    }
+    // console.log(poppy);
+
+    const gauge = document.querySelector('.gauge');
+
+
+    const myCar = {
+        owner: "max",
+        category: "세단",
+        fueltype: "gasolin",
+        speed: 0,
+        fuelamount: 100,
+        minSpeed: 0,
+        limit: 200,
+
+        accel: function () {
+            if ((this.speed + 10) > this.limit) {
+                this.speed = limit;
+                gauge.style.width = `${this.speed * 2}px`;
+                alert(`최대속도에 도달했습니다. 현재속도 ${this.limit}`)
+            } else {
+                this.speed = this.speed + 10;
+                gauge.style.width = `${this.speed * 2}px`;
+                console.log(`${this.owner} 님의 차량 현재 속도 : ${this.speed}`);
+            }
+        },
+        break: function () {
+            this.speed = this.speed - 10;
+            gauge.style.width = `${this.speed}px`;
+            console.log(`${this.owner} 님의 차량 현재 속도 : ${this.speed}`);
+        },
+        status: function () {
+            alert(`소유자 : ${this.owner}
+                \n 차종 : ${this.category}
+                \n 현재속도 : ${this.speed}
+                \n 연료량 : ${this.fuelamount}`)
+        },
+    }
+</script>
+</body>
+
+</html>

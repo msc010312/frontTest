@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        let arr = ['str1','str2',null,true,false,undefined,{name : 'max', age : 15}]
+        console.log(typeof arr)
+        console.log(arr[0])
+        console.log(arr[1])
+        console.log(arr[2])
+        console.log(arr[3])
+        console.log(arr[4])
+        console.log(arr[5])
+        console.log(arr[6])
+
+        // 배열의 동적 확장
+        arr[7] = 100;
+        console.log(arr);
+        arr[10] = "hello world"
+        console.log(arr[8],arr[9],arr[10])
+        console.log(arr.length)
+
+        // 배열함수
+        arr.forEach((item)=>{
+            console.log("item : ", item)
+        });
+
+        // push - 마지막 index에 요소추가
+        // pop - 마지막 index 제거
+        arr.push('aaa');
+        console.log(arr)
+
+        arr.pop();
+        arr.pop();
+        console.log(arr)
+    </script>
+</body>
+</html>
