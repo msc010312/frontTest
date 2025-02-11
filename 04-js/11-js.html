@@ -1,10 +1,92 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="../js/matjip.js"></script>
 </head>
+
 <body>
-    
+
+
+    <script>
+        // 전체데이터
+        const mat = 중구맛집.data
+
+        // 한식 필터링
+        const korea = mat.filter((item) => {
+            return item.FD_CS == '한식'
+        })
+        // console.log(korea);
+
+        // 한식에서 상호명,주소,메뉴로 배열 재구성
+        const koMap = korea.map((item) => {
+            item = {
+                BZ_NM: item.BZ_NM,
+                GNG_CS: item.GNG_CS,
+                MNU: item.MNU,
+            }
+            return item
+        })
+        // console.log(koMap)
+
+        // 메뉴를 메뉴명과 가격으로 분리
+        koMap.map((item) => {
+            let replaced = item.MNU.replaceAll("<br />", "\n")
+            let reArr = replaced.split("\n")
+            reArr.map((menu) => {
+                menu.trim()
+                let space = menu.trim().split('');
+                console.log(space)
+                space.map((menu2) => {
+                    console.log(menu2.match("^[0-9]"))
+                })
+            })
+        })
+
+        //RenewaledMenu에서 주문 리스트(특정 상호명을 선택해서 메뉴추가작업의 결과값을 넣어주시면 됩니다)
+        //장모님 국밥 메뉴 주문 리스트
+        let order_list = [
+            { "OID": "1111-1111", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "돼지국밥", "PRC": 9000, "AMT": 5 },
+            { "OID": "1111-1112", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "수육", "PRC": 28000, "AMT": 2 },
+            { "OID": "1111-1113", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "순대한접시", "PRC": 12000, "AMT": 2 },
+            { "OID": "1111-1114", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "섞어국밥", "PRC": 9000, "AMT": 4 },
+        ];
+
+        order_list = [
+            //    {"OID":"주문번호",'BZ_NM':'상호명',"GNG_CS":'주소',"MNU":"메뉴명","PRC":"가격","AMT":"수량"} //수량은 임의로
+            { "OID": "1111-1111", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "돼지국밥", "PRC": 9000, "AMT": 5 },
+            { "OID": "1111-1112", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "수육", "PRC": 28000, "AMT": 2 },
+            { "OID": "1111-1113", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "순대한접시", "PRC": 12000, "AMT": 2 },
+            { "OID": "1111-1114", 'BZ_NM': "장모님국밥", "GNG_CS": "대구광역시 중구 삼덕동2가 149-6", "MNU": "섞어국밥", "PRC": 9000, "AMT": 4 },
+        ]
+
+        // 1 주문 아이템 리스트의 아이템당 지불금액을 구하세요  
+        // ex {OID : "1111-1111" ,PRICE_AMOUNT:45000}
+        // ex {OID : "1111-1112" ,PRICE_AMOUNT:56000}
+        // ...
+
+        const priceAmount = order_list.map((item) => {
+            item = {
+                OID: item.OID,
+                PRICE_AMOUNT: item.PRC * item.AMT
+            }
+            return item
+
+
+        })
+        console.log(priceAmount)
+
+        // 2 총 지불 금액을 구하세요 -
+        // ex {TOTALPRICE :PRICE*AMOUNT의 합}
+
+        const totalPrice = order_list.reduce((sum, item) => {
+            return item.PRC * item.AMT
+        }, 0)
+        console.log(totalPrice)
+
+    </script>
 </body>
+
 </html>
