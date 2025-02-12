@@ -1,0 +1,133 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box" style="height: 50px; background: orange;">
+
+    </div>
+    <script>
+        //     
+        //     산술 연산자 (Arithmetic Operators):
+
+        //     + (덧셈)
+        //     - (뺄셈)
+        //     * (곱셈)
+        //     / (나눗셈)
+        //     % (나머지)
+        //     ++ (증가)
+        //     -- (감소)
+        // 
+        // console.log(4%2 == 0 && '짝수입니다')
+        // console.log(5%2 == 0 )
+        // console.log(6%2 == 0)
+        // console.log(7%2 == 0)
+
+        // console.log(123456789%100)
+
+
+        // setInterval(()=>{
+        //     console.log((parseInt(Math.random()*100))%45)
+        // },500)
+
+        // 증감연산자
+        // let n1 = 10;
+        // n1+1
+        // console.log("1", n1)
+        // n1 = n1 + 1
+        // console.log("2", n1)
+        // n1++ //후치연산자 (다른연산처리 우선)
+        // console.log("3", n1)
+        // ++n1 //전치연산자 (해당연산처리 우선)
+        // console.log("4", n1)
+
+        // let a = 10
+        // let b = 20
+        // let c = 30
+        // let d = (a++ + ++b) && (++c + a++);
+        // console.log(a,b,c,d)
+
+
+        //     할당 연산자 (Assignment Operators):
+        //     = (할당)
+        //     += (더해서 할당)
+        //     -= (빼서 할당)
+        //     *= (곱해서 할당)
+        //     /= (나눠서 할당)
+        //     %= (나머지를 할당)
+        // 
+
+        // 비교 연산자 (Comparison Operators):
+
+        //     == (동등 비교)
+        //     === (일치 비교)
+        //     != (부등 비교)
+        //     !== (불일치 비교)
+        //     > (크다)
+        //     < (작다)
+        //     >= (크거나 같다)
+        //     <= (작거나 같다)
+        // 
+
+
+        // == vs ===
+        // console.log('1'+2);
+        // console.log('123' == 123);
+        // console.log('123' === 123); //value와 자료형을 함께 일치여부 확인
+
+
+
+
+        // 논리 연산자 (Logical Operators):
+
+        // && (논리 AND)
+        // || (논리 OR)
+        // ! (논리 NOT)
+        // 비트 연산자 (Bitwise Operators):
+
+        // & (비트 AND)
+        // | (비트 OR)
+        // ^ (비트 XOR)
+        // ~ (비트 NOT)
+        // << (왼쪽 시프트)
+        // >> (오른쪽 시프트)
+        // >>> (부호 없는 오른쪽 시프트)
+
+        let n1 = 100
+        let n2 = true
+        let n3 = false
+        let n4 = null
+        let n5 = undefined
+        let n6 = 0
+
+        // console.log(n1>10 && (n6=10))
+        console.log(n1 && 'true임')
+        console.log(!n4 && 'null임')
+        console.log(!n5 && 'undifined임')
+        console.log(!n6 && '0임')
+        console.log(!n1 > 10 || (n6 == 0))
+
+        //     삼항 조건 연산자 (Ternary Operator):
+        //     condition ? expression1 : expression2
+        //     타입 연산자 (typeof Operator):
+
+        // const data = prompt('값을 입력하세요')
+        // data>10 ? console.log("참입니다") : console.log("거짓입니다")
+
+        const box1 = document.querySelector('.box')
+            window.innerWidth < 380 ? 
+            box1.style.backgroundColor = "green"
+            :
+            console.log("거짓입니다")
+
+        //     typeof (피연산자의 타입을 문자열로 반환)
+        //     인스턴스 검사 연산자 (instanceof Operator):
+        // 
+    </script>
+</body>
+
+</html>

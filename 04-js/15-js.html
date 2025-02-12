@@ -1,0 +1,22 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box" style="width: 300px; height: 300px; margin: 50px auto; border: 1px solid #333; background: orange;"></div>
+    <script>
+        let box = document.querySelector('.box')
+        let boxStyle = prompt("기본스타일을 입력하세요")
+        const styleArr = boxStyle.split('.')
+        if(styleArr[0] == '가로') {
+            box.setAttribute(`style`,`width${styleArr[1]};height${styleArr[2]};color${styleArr[3]};background${styleArr[4]}`)
+            // document.write(`<h1>${number}는 짝수입니다</h1>`)
+        } else {
+            box.setAttribute(`style`,`width${styleArr[2]};height${styleArr[1]};color${styleArr[3]};background${styleArr[4]}`)
+            // document.write(`<h1>${number}는 홀수입니다</h1>`)
+        }
+    </script>
+</body>
+</html>
