@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const obj = {
+            name: 'max', 
+            age: 15
+        }
+        // console.log(obj)
+        // console.log(null)
+
+        console.log(Object.keys(obj)) //key를 배열로 반환
+        console.log(Object.values(obj)) //value를 배열로 반환
+        console.log(Object.entries(obj)) //[key : value]형태의 배열로 반환
+
+        let ob1 = {
+            addr : '대구',
+        }
+        let ob2 = {
+            gender : "m"
+        }
+
+        console.log(Object.assign(obj,ob1,ob2))//obj에 ob1,ob2 key : value를 복사
+
+        Object.freeze(obj) //객체 수정 불가
+        obj.name="kevin"
+        obj['age']=100
+        console.log(obj)
+
+        Object.seal(obj) // 속성 추가 불가
+
+        console.log(Object.prototype)
+
+        function person(name){
+            this.name = name
+        }
+        //객체 생성
+        const person1 = new Person('max')
+        console.log(person1)
+
+        person1.toString()
+
+        //기능추가
+        Person.prototype.hello=function(){
+            console.log(`안녕하세요 저는 ${this.name} 입니다`)
+        }
+        //
+        const person2 = new Person('kevin')
+        console.log(person2)
+        person.hello()
+    </script>
+</body>
+
+</html>

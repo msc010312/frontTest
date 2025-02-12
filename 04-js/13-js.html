@@ -1,0 +1,55 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function animalName(name) {
+            console.log('name 호출')
+            this.name = name; //속성추가
+        }
+        animalName.prototype.getName = function () {
+                console.log(`my name is ${this.name}`)
+                console.log(`my kind is ${this.kind}`)
+                console.log(`my color is ${this.color}`)
+        }
+
+        function animalKind(name, kind) {
+            animalName.call(this, name) //상위클래스 호출
+            console.log("kind 호출")
+            this.kind = kind
+        }
+
+        animalKind.prototype = Object.create(animalName.prototype) //프로토타입간 상속
+
+        function animalColor(name, kind, color) {
+            animalKind.call(this, name, kind)
+            console.log('color 호출')
+            this.color = color
+        }
+
+        animalColor.prototype = Object.create(animalKind.prototype) //프로토타입간 상속
+
+        const dog1 = new animalName('french')
+        console.log(dog1)
+        dog1.getName()
+
+        console.log('-------------------------------------------')
+
+        const dog2 = new animalKind('max', 'husky')
+        console.log(dog2)
+        dog2.getName()
+
+        console.log('-------------------------------------------')
+
+        const dog3 = new animalColor('kevin', 'martiz', 'white')
+        console.log(dog2)
+        dog3.getName()
+    </script>
+</body>
+
+</html>
