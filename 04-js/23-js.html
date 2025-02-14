@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d1"></div>
+    <hr>
+    <div class="d2"></div>
+    <hr>
+    <div class="d3"></div>
+    <script>
+        // 전역변수 사용
+        const d1 = document.querySelector('.d1');
+        var count = 0;
+        d1.addEventListener('click', (e) => {
+            console.log('clicked', e)
+            d1.innerHTML = `<h1>${++count}</h1>`
+        });
+
+        //closure 사용
+        const d2 = document.querySelector('.d2');
+
+        d2.addEventListener('click', () => {
+            addCnt(d2);
+        });
+
+        function clickHandler() {
+            let cnt = 0;
+            function addCnt(node) {
+                cnt++;
+                node.innerHTML = `<h1>${cnt}</h1>`
+                console.log(cnt);
+            };
+            return addCnt;
+        };
+        const addCnt = clickHandler();
+
+
+        // 마우스관련 이벤트
+        const d3 = document.querySelector('.d3');
+        // mouseEnter
+        d3.addEventListener('mouseenter', () => {
+            d3.innerHTML = '<h1>mouse enter</h1>'
+        })
+
+        // mouseOver
+        d3.addEventListener('mouseover', () => {
+            d3.innerHTML = '<h1>mouse over</h1>'
+        })
+
+        // mouseLeave
+        d3.addEventListener('mouseleave', () => {
+            d3.innerHTML = '<h1>mouse leave</h1>'
+        })
+
+        // mouseClick
+        d3.addEventListener('click', () => {
+            d3.innerHTML = '<h1>mouse click</h1>'
+        })
+
+        // mouseDoubleClick
+        d3.addEventListener('dblclick', () => {
+            d3.innerHTML = '<h1>mouse dobleClick</h1>'
+        })
+
+        // mouseContextMenu
+        d3.addEventListener('contextmenu', () => {
+            d3.innerHTML = '<h1>mouse contextmenu</h1>'
+        })
+
+        // drag & drop
+
+    </script>
+</body>
+
+</html>
