@@ -10,6 +10,51 @@
             height: 200px;
             border: 1px solid #333;
         }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            border: none;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .d4 {
+            width: 500px;
+            height: 500px;
+            padding: 10px;
+            margin: 10px;
+            border: 5px dashed #333;
+        }
+
+        .d4::after {
+            content: '+';
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 7rem;
+            width: 100%;
+            height: 100%;
+            color: #333;
+        }
+
+        .preview {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+            width: 200px;
+            height: 500px;
+            padding: 10px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        .preview::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 </head>
 
@@ -19,6 +64,11 @@
     <div class="d2"></div>
     <hr>
     <div class="d3"></div>
+    <hr>
+    <div class="container">
+        <div class="d4"></div>
+        <div class="preview"></div>
+    </div>
     <script>
         // 전역변수 사용
         const d1 = document.querySelector('.d1');
@@ -80,7 +130,70 @@
         })
 
         // drag & drop
+        const d4 = document.querySelector('.d4');
+        let maxSize = (1024 * 1024) * 1
+        function isValid(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('이미지파일만 업로드 가능합니다');
+                return false
+            } else if (file.size >= maxSize) {
+                alert('파일업로드의 최대 사이즈는 1MB입니다')
+                return false
+            } else {
+                return true
+            }
 
+        }
+        // dragStart
+        // drag
+        // dragEnter
+        // dragOver
+        // dragLeave
+        // dragEnd
+        // drop  
+        d4.addEventListener('dragenter', (e) => {
+            e.preventDefault();
+            console.log('dragenter', e)
+        })
+        d4.addEventListener('dragover', (e) => {
+            d4.style.border = "5px dashed gray"
+            d4.style.color = "gray"
+            e.preventDefault();
+
+            console.log('dragover', e)
+        })
+        d4.addEventListener('dragleave', (e) => {
+            d4.style.border = "5px dashed #333"
+            d4.style.color = "#333"
+            e.preventDefault();
+
+            console.log('dragleave', e)
+        })
+        d4.addEventListener('dragend', (e) => {
+            e.preventDefault();
+            console.log('dragend', e)
+        })
+        d4.addEventListener('drop', (e) => {
+            e.preventDefault();
+            d4.style.border = "5px dashed #333"
+
+            const files = e.dataTransfer.files;
+            for (let i = 0; i < files.length; i++) {
+                
+                const file = e.dataTransfer.files[i]
+
+                // 유효성체크
+                if (!isValid(file)) return;
+
+                // 미리보기로 이미지 보여주기
+                const pv = document.querySelector('.preview');
+                const newImg = document.createElement('img')
+                newImg.src = URL.createObjectURL(file);
+                newImg.setAttribute('style', 'width:100%;height:100%;object-fit:contain;')
+                pv.prepend(newImg);
+                
+            }
+        });
     </script>
 </body>
 
