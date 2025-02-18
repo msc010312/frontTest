@@ -27,13 +27,32 @@
         }
 
         #result {
+            position: relative;
+            height: 30px;
             font-size: 1.5rem;
+        }
+
+        .textContainer {
+            position: relative;
+            width: 100%;
+            height: 35px;
+            font-size: 1.2rem;
         }
 
         #inputText {
             width: 100%;
-            height: 35px;
-            font-size: 1.2rem;
+            height: 100%;
+        }
+
+        .textContainer>label {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            line-height: 35px;
+            padding: 0 10px;
+            color: #3c3c3c;
+            font-size: 0.8rem;
         }
 
         .valid {
@@ -44,7 +63,7 @@
             color: crimson;
         }
 
-        #progress { 
+        #progress {
             position: relative;
             border: 1px solid #3c3c3c;
             height: 25px;
@@ -64,9 +83,12 @@
 <body>
     <div class="container">
         <h1>타자연습</h1>
-        <div class="" id="targetText">묻고 더블로 가</div>
-        <div id="result">입력된 값이 올바른지 여부를 확인하는 부분입니다</div>
-        <input type="text" name="" id="inputText" placeholder="입력하세요" autocomplete="off">
+        <div class="" id="targetText"></div>
+        <div id="result"></div>
+        <div class="textContainer">
+            <input type="text" name="" id="inputText" autocomplete="off">
+            <label for="inputText"></label>
+        </div>
         <div id="progress">
             <span class="material-symbols-outlined">
                 delivery_truck_speed
@@ -79,6 +101,7 @@
         const result = document.querySelector('#result')
         const inputText = document.querySelector('#inputText')
         const progress = document.querySelector('#progress span')
+        const textLabel = document.querySelector('.textContainer label')
 
 
         // 문장배열
@@ -91,13 +114,14 @@
 
         let textIdx = parseInt(Math.random() * 100) % texts.length;
         target.innerHTML = texts[textIdx];
+
         //글자 하나씩 확인
         inputText.addEventListener('input', (e) => {
             // 일치 여부 확인
             const text = texts[textIdx];
 
             // 일치하는 문자개수 저장
-            let validCnt ='';
+            let validCnt = '';
             // result에 입력 내용 표시( O -> green , X -> red )
             let resultHtml = '';
             const inputValue = inputText.value;
@@ -115,13 +139,13 @@
 
             }
             result.innerHTML = resultHtml;
-            
+
             //문장 완성도를 백분율로 표시
-            console.log(text.length,validCnt)
+            console.log(text.length, validCnt)
             const progressBar = (validCnt / text.length) * 100;
-            
-            if(progressBar === 100) {
-                progress.style.left =`calc(${progressBar}% - 25px)`
+
+            if (progressBar === 100) {
+                progress.style.left = `calc(${progressBar}% - 25px)`
             } else {
                 progress.style.left = `${progressBar}%`
             }
@@ -133,9 +157,9 @@
                 setTimeout(() => {
                     inputText.disabled = true;
                     // textIdx = (textIdx + 1 >= texts.length) ? 0 : textIdx + 1;
-                    while(true) {
+                    while (true) {
                         tmp = parseInt(Math.random() * 100) % texts.length;
-                        if(tmp!==textIdx){
+                        if (tmp !== textIdx) {
                             textIdx = tmp;
                             break;
                         }

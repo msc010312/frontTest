@@ -1,0 +1,24 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="chkBlock">
+        <input type="checkbox" name="" id="chk">
+        <label for="chk">체크박스</label>
+    </div>
+    <script>
+        const chk = document.querySelector('#chk')
+        chk.addEventListener('change',(e)=>{
+            console.log(e)
+            if(e.target.checked){
+                document.querySelector(".chkBlock>label").style.color = "red"
+            } else {
+                document.querySelector(".chkBlock>label").style.color = "blue"
+            }
+        })
+    </script>
+</body>
+</html>

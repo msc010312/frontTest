@@ -1,0 +1,79 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .ball {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        min-width: 50px;
+        min-height: 50px;
+        border-radius: 50%;
+        transition: all 0.5s;
+    }
+
+    .ball-1280px {
+        width: 300px;
+        height: 300px;
+        border: 5px solid #333;
+    }
+
+    .ball-768px {
+        width: 200px;
+        height: 200px;
+        border: 5px dashed #333;
+    }
+
+    .ball-480px {
+        width: 100px;
+        height: 100px;
+        border: 5px dotted #333;
+    }
+</style>
+
+<body>
+    <div class="ball ball-1280px"></div>
+    <script>
+        //DOMContentLoaded : document가 최초 실행될때(DOM객체가 완성되고 나서 실행)
+        //Load : document가 최초 실행될때(모든 리소스가 전부 로드 된 후 실행)
+        window.addEventListener('DOMContentLoaded', () => {
+
+            // 반응처리함수
+            const flexibleBall = (width, ballEl) => {
+                if (width < 768) {
+                    //모바일 처리
+                    ballEl.className = 'ball ball-480px';
+                }
+                else if (width < 1280) {
+                    //태블릿 처리
+                    ballEl.className = 'ball ball-768px';
+                }
+                else {
+                    //데스크탑 처리
+                    ballEl.className = 'ball ball-1280px';
+                }
+            }
+            const width = window.innerWidth;
+            const ballEl = document.querySelector('.ball');
+            flexibleBall(width, ballEl);
+
+            window.addEventListener('resize', () => {
+                const width = window.innerWidth;
+                const ballEl = document.querySelector('.ball');
+                flexibleBall(width, ballEl);
+            })
+
+            // DOMLOAD EVENT
+        })
+
+    </script>
+</body>
+
+</html>
