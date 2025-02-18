@@ -1,0 +1,156 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <title>Document</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 100px auto;
+            font-size: 1.2rem;
+        }
+
+        .container>* {
+            margin-bottom: 20px;
+        }
+
+        .container>h1 {
+            text-align: center;
+        }
+
+        #targetText {
+            font-size: 1.5rem;
+        }
+
+        #result {
+            font-size: 1.5rem;
+        }
+
+        #inputText {
+            width: 100%;
+            height: 35px;
+            font-size: 1.2rem;
+        }
+
+        .valid {
+            color: green;
+        }
+
+        .invalid {
+            color: crimson;
+        }
+
+        #progress { 
+            position: relative;
+            border: 1px solid #3c3c3c;
+            height: 25px;
+            padding: 5px;
+            width: 500px;
+            border-radius: 5px;
+        }
+
+        #progress>span {
+            position: absolute;
+            left: 0;
+            transition: ease-in 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>타자연습</h1>
+        <div class="" id="targetText">묻고 더블로 가</div>
+        <div id="result">입력된 값이 올바른지 여부를 확인하는 부분입니다</div>
+        <input type="text" name="" id="inputText" placeholder="입력하세요" autocomplete="off">
+        <div id="progress">
+            <span class="material-symbols-outlined">
+                delivery_truck_speed
+            </span>
+        </div>
+    </div>
+
+    <script>
+        const target = document.querySelector('#targetText')
+        const result = document.querySelector('#result')
+        const inputText = document.querySelector('#inputText')
+        const progress = document.querySelector('#progress span')
+
+
+        // 문장배열
+        const texts = [
+            "묻고 더블로 가",
+            "꼭 그렇게 다 가져가야만 속이 후련했냐",
+            "신에게는 아직 12척의 배가 남아 있사옵니다",
+            "아직 한발 남았다",
+        ]
+
+        let textIdx = parseInt(Math.random() * 100) % texts.length;
+        target.innerHTML = texts[textIdx];
+        //글자 하나씩 확인
+        inputText.addEventListener('input', (e) => {
+            // 일치 여부 확인
+            const text = texts[textIdx];
+
+            // 일치하는 문자개수 저장
+            let validCnt ='';
+            // result에 입력 내용 표시( O -> green , X -> red )
+            let resultHtml = '';
+            const inputValue = inputText.value;
+            for (let i = 0; i < inputValue.length; i++) {
+                // 문장길이 초과
+                if (i >= text.length) {
+                    resultHtml += `<span class="invalid">${inputValue[i]}</span>`
+                } else if (text[i] !== inputValue[i]) {
+                    resultHtml += `<span class="invalid">${inputValue[i]}</span>`
+                }
+                else {
+                    resultHtml += `<span class="valid">${inputValue[i]}</span>`
+                    validCnt++
+                }
+
+            }
+            result.innerHTML = resultHtml;
+            
+            //문장 완성도를 백분율로 표시
+            console.log(text.length,validCnt)
+            const progressBar = (validCnt / text.length) * 100;
+            
+            if(progressBar === 100) {
+                progress.style.left =`calc(${progressBar}% - 25px)`
+            } else {
+                progress.style.left = `${progressBar}%`
+            }
+
+
+            // 문장전체 일치 여부
+            if (text === inputValue) {
+
+                setTimeout(() => {
+                    inputText.disabled = true;
+                    // textIdx = (textIdx + 1 >= texts.length) ? 0 : textIdx + 1;
+                    while(true) {
+                        tmp = parseInt(Math.random() * 100) % texts.length;
+                        if(tmp!==textIdx){
+                            textIdx = tmp;
+                            break;
+                        }
+                    }
+                    target.innerHTML = texts[textIdx];
+                    inputText.value = ''
+                    result.innerHTML = ''
+                    inputText.disabled = false;
+                    inputText.focus();
+                    // 자동차 아이콘 초기화
+                    progress.style.left = `0%`
+                }, 1000);
+            };
+        });
+    </script>
+</body>
+
+</html>
