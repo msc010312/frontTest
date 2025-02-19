@@ -1,124 +1,165 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- GOOGLE ICON -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-        .item {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            min-width: 500px;
-            border: 1px solid #333;
-            height: 35px;
-            margin: 10px 5px;
-            padding: 5px;
-            gap: 10px;
+        * {
+            font-size: 1rem;
         }
 
-        .left {
-            position: relative;
-            display: flex;
-            align-items: center;
-            border: 1px solid #333;
-            flex: 1;
-            height: 100%;
-        }
-
-        .right {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #333;
-            width: 35px;
-            height: 100%;
-        }
-
-        .right>span {
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 300,
+                'GRAD' 0,
+                'opsz' 24;
+            font-size: 1.5rem;
             cursor: pointer;
         }
+
+        input {
+            height: 35px;
+        }
+
+        .btn {
+            width: 75px;
+            height: 35px;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+
+        th,
+        td {
+            width: 50px;
+            height: 35px;
+            border: 1px solid;
+            margin: 2px;
+        }
+
+        th:nth-child(1),
+        td:nth-child(1) {
+            width: 150px;
+        }
+
+        th:nth-child(3),
+        td:nth-child(3) {
+            width: 700px;
+        }
     </style>
-    
+
 </head>
 
 <body>
-    <input type="text" class="input">
-    <span></span>
-    <button class="btn">검색</button>
+    <form action="" name="joinForm" onsubmit="return false">
+        <input name="username" placeholder="이름을 입력하세요">
+        <input name="age" placeholder="나이를 입력하세요">
+        <input name="address" placeholder="주소를 입력하세요">
+        <button class="btn">입력</button>
+    </form>
     <hr>
-    <div class="container"></div>
+    <table>
+        <thead>
+            <tr>
+                <th>이름</th>
+                <th>나이</th>
+                <th>주소</th>
+                <th>삭제</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+
+    </table>
+
+    </div>
     <script>
-        // DOM 로딩 이벤트
-        document.addEventListener('DOMContentLoaded', () => {
+        // form의 기본기능은 비활성화합니다
+        //입력버튼을 눌렀을때 table의 tbody에 입력된 (이름/나이/주소/삭제버튼)이 생성될수 있도록합니다
+        //입력된 노드의 이름/나이/주소를 수정할수 있도록합니다.
+        //특정행의 삭제버튼을 클릭했을때 해당 행이 삭제 될수 있도록 합니다.
 
-            // 요소탐색
-            const input = document.querySelector('.input');
-            const btn = document.querySelector('.btn');
-            const container = document.querySelector('.container');
- 
+        //특정행의 위치를 위로이동/아래로 이동이 가능하도록 합니다(나중에)
+
+        const btnEl = document.querySelector('.btn');
+        const formEl = document.joinForm;
+        const usernameEl = formEl.username;
+        const ageEl = formEl.age;
+        const addressEl = formEl.address;
+        const tableBodyEl = document.querySelector('table tbody');
+
+        btnEl.addEventListener('click', () => {
+            const formData = {
+                name: usernameEl.value,
+                age: ageEl.value,
+                address: addressEl.value,
+            }
+            newtbl(formData);
+            usernameEl.value = '';
+            ageEl.value = '';
+            addressEl.value = '';
+        });
+
+        function newtbl(formData) {
+            if (!valid(formData)) {
+                return
+            }
+
+            const newtr = document.createElement('tr')
+            const makeName = document.createElement('td')
+            const makeAge = document.createElement('td')
+            const makeAdress = document.createElement('td')
+            const del = document.createElement('td')
+            const delIcon = document.createElement('span')
+
+            delIcon.addEventListener('click', (delTd()))
+
+            makeName.innerHTML = formData.name;
+            makeAge.innerHTML = formData.age;
+            makeAdress.innerHTML = formData.address;
+
+            delIcon.classList.add('material-symbols-outlined');
+            delIcon.innerHTML = 'delete';
 
 
-            btn.addEventListener('click', () => {
-                const text = input.value;
-                newNode(text);
-                delNode(del);
-                input.value = '';
+            tableBodyEl.appendChild(newtr)
+            newtr.appendChild(makeName)
+            newtr.appendChild(makeAge)
+            newtr.appendChild(makeAdress)
+            newtr.appendChild(del)
+            del.appendChild(delIcon)
+        }
 
-            })
+        function delTd(del) {
+            const grand = del.target.parentNode.parentNode
+            grand.remove();
+        }
 
-            function newNode(text) {
-                if(!isValid(text)) {   
-                    return;
-                };
-
-                const parent = document.createElement('div');
-                const left = document.createElement('div');
-                const right = document.createElement('div');
-                const delIcon = document.createElement('span');
-
-                left.innerHTML = text;
-
-                delIcon.addEventListener('click',(e)=>{
-                    const grand = e.target.parentNode.parentNode
-                    grand.remove();
-                })
-
-
-                //클래스추가
-                parent.classList.add('item');
-                left.classList.add('left');
-                right.classList.add('right');
-                //아이콘
-                delIcon.classList.add('material-symbols-outlined');
-                delIcon.innerHTML = 'delete';
-
-                //노드연결
-                container.appendChild(parent);
-                parent.appendChild(left);
-                parent.appendChild(right);
-                right.appendChild(delIcon);
-            };
-
-            function delNode(del) {
-                
-            };
-
-            function isValid(text) {
-                const regex = /^[0~9]/;
-
-                if (text.trim() === '' || text.trim() === null) {
-                    alert('유효하지않은 데이터');
-                    return false;
-                } else if (regex.test(text)) {
-                    return false;
-                }
+        function valid(formData) {
+            const regex1 = /[a-z0-9]|[ \[\]{}()<>?|`~!@#$%^&*-_+=,.;:\"'\\]/;
+            const regex2 = /^(\(?\+?[0-9]\)?)?[0-9_\- \(\)]$/;
+            const ageInt = parseInt(formData.age)
+            console.log(ageInt)
+            if (regex1.test(formData.name)) {
+                alert('한글이름만 가능합니다');
+                return false;
+            } else if (regex2.test(ageInt) === Number) {
+                alert('숫자만 가능합니다');
+                return false;
+            } else {
                 return true;
-            };
-        })
+            }
+            
+        }
+
     </script>
 </body>
 
