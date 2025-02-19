@@ -1,0 +1,44 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="">
+        <input type="text">
+        <input type="text">
+    </form>
+
+    <form action="" name="joinForm">
+        <input type="text" name="userId">
+        <input type="text" name="userName">
+    </form>
+    
+    <form action="">
+        <input type="text">
+        <input type="text">
+    </form>
+    <script>
+        // 전체 form 탐색
+        const form = document.forms;
+        console.log(form)
+
+        // 개별 form 접근
+        console.log(form[0])
+        console.log(form[1])
+        console.log(form[2])
+
+        //개별 form 내의 자식노드 접근
+        console.log(form[0][0])
+        console.log(form[0][1])
+        form[0][0].value = 'kevin'
+        form[0][1].value = '15'
+
+        // form의 이름검색
+        const form2 = document.joinForm;
+        form2.userId.value = "user1"
+        form2.userName.value = "max"
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>list 1</li>
+        <li id="li2">list 2</li>
+        <li class="item">list 3</li>
+        <li>list 4</li>
+        <li id="li5">list 5</li>
+        <li>list 6</li>
+        <li class="item">list 7</li>
+        <li class="item">list 8</li>
+    </ul>
+
+    <script>
+        // id 가져오기
+        const list2 = document.getElementById('li2');
+        list2.style.background = "orange";
+
+        // 선택자 
+
+        // 같은 이름이면 맨위에 있는 단일대상 탐색
+        const item1 = document.querySelector('.item');
+        item1.style.color = "blue";
+        item1.style.fontWeight = "bold";
+
+        // 같은 이름들 전부 탐색
+        const item2 = document.querySelectorAll('.item');
+        console.log(item2)
+        item2.forEach((item)=>{
+            item.style.border = "2px solid #333"
+            item.style.margin = "20px 0"
+        })
+
+        // 
+        const liName = document.getElementsByTagName('li');
+        console.log(liName)
+        // liName.forEach((item)=>{
+        //     // console.log(item)
+        // })
+
+        // 유사배열 -> 배열로 전환
+        const liName2 = Array.from(liName)
+        console.log(liName2)
+        liName2.forEach((item)=>{
+            console.log(item)
+        })
+    </script>
+</body>
+</html>

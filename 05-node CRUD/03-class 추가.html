@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            width: 120px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid #333;
+            border-radius: 5px;
+            transition: all 0.5s;
+            cursor: pointer;
+        }
+
+        .btn--bg0 {
+            background: crimson;
+            color: #fff;
+        }
+        .btn--bg1 {
+            background: orange;
+            color: #fff;
+        }
+        .btn--bg2 {
+            background: khaki;
+            color: #fff;
+        }
+        .btn--bg3 {
+            background: green;
+            color: #fff;
+        }
+        .btn--bg4 {
+            background: royalblue;
+            color: #fff;
+        }
+        .btn--bg5 {
+            background: navy;
+            color: #fff;
+        }
+        .btn--bg6 {
+            background: purple;
+            color: #fff;
+        }
+        .btn--bg7 {
+            background: brown;
+            color: #fff;
+        }
+        .btn--bg8 {
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">button 1</div>
+    <div class="btn">button 2</div>
+    <div class="btn">button 3</div>
+    <div class="btn">button 4</div>
+    <div class="btn">button 5</div>
+    <div class="btn">button 6</div>
+    <div class="btn">button 7</div>
+    <div class="btn">button 8</div>
+    <div class="btn">button 9</div>
+    <script>
+        const btn = document.querySelectorAll('.btn');
+        btn.forEach((item,idx)=>{
+            console.log(item,idx)
+            item.addEventListener('mouseover',()=>{
+                item.classList.add(`btn--bg${idx}`)
+            })
+            item.addEventListener('mouseleave',()=>{
+                item.classList.remove(`btn--bg${idx}`)
+            })
+        })
+    </script>
+</body>
+</html>

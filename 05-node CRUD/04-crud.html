@@ -1,0 +1,125 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        .item {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 500px;
+            border: 1px solid #333;
+            height: 35px;
+            margin: 10px 5px;
+            padding: 5px;
+            gap: 10px;
+        }
+
+        .left {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #333;
+            flex: 1;
+            height: 100%;
+        }
+
+        .right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #333;
+            width: 35px;
+            height: 100%;
+        }
+
+        .right>span {
+            cursor: pointer;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <input type="text" class="input">
+    <span></span>
+    <button class="btn">검색</button>
+    <hr>
+    <div class="container"></div>
+    <script>
+        // DOM 로딩 이벤트
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 요소탐색
+            const input = document.querySelector('.input');
+            const btn = document.querySelector('.btn');
+            const container = document.querySelector('.container');
+ 
+
+
+            btn.addEventListener('click', () => {
+                const text = input.value;
+                newNode(text);
+                delNode(del);
+                input.value = '';
+
+            })
+
+            function newNode(text) {
+                if(!isValid(text)) {   
+                    return;
+                };
+
+                const parent = document.createElement('div');
+                const left = document.createElement('div');
+                const right = document.createElement('div');
+                const delIcon = document.createElement('span');
+
+                left.innerHTML = text;
+
+                delIcon.addEventListener('click',(e)=>{
+                    const grand = e.target.parentNode.parentNode
+                    grand.remove();
+                })
+
+
+                //클래스추가
+                parent.classList.add('item');
+                left.classList.add('left');
+                right.classList.add('right');
+                //아이콘
+                delIcon.classList.add('material-symbols-outlined');
+                delIcon.innerHTML = 'delete';
+
+                //노드연결
+                container.appendChild(parent);
+                parent.appendChild(left);
+                parent.appendChild(right);
+                right.appendChild(delIcon);
+            };
+
+            function delNode(del) {
+                
+            };
+
+            function isValid(text) {
+                const regex = /^[0~9]/;
+
+                if (text.trim() === '' || text.trim() === null) {
+                    alert('유효하지않은 데이터');
+                    return false;
+                } else if (regex.test(text)) {
+                    return false;
+                }
+                return true;
+            };
+        })
+    </script>
+</body>
+
+</html>
