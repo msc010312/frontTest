@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- ---------------------------------------------
+    동기(Synchronous) / 비동기(ASynchronous) 방식
+    ---------------------------------------------
+
+    ---------------------
+    동기(Synchronous)
+    ---------------------
+    코드가 위에서 아래로 순차적으로 실행
+    이전 작업이 끝나야 다음 작업이 실행
+    실행 흐름이 직관적이지만 처리시간이 오래걸리는 작업이 있으면 전체 프로그램이 지연 될 수 있음
+
+    ---------------------
+    비동기(ASynchronous)
+    ---------------------
+    특정 작업이 끝날 때까지 기다리지 않고 다음 코드가 먼저 실행됨
+    시간이 오래 걸리는 작업(예: 네트워크 요청, 파일 읽기 등)을 수행할 때 유용함
+    콜백(callback), 프로미스(Promise), async/await 등을 이용해 처리함
+ -->
+
+
+    <script>
+        // 스크립트 내 코드에서의 동기(약속) : 메인코드라인(메인Thread)대로 코드를 실행 처리
+        // 스크립트 내 코드에서의 비동기 : 메인코드라인(메인Thread)에서 분할된(Worker Thread)에서 독립적으로 코드를 실행 처리
+        // [주의] 스크립트내에서 스레드를 분할처리하는 것은 실제로 스레드가 분할되는것은아니라 그렇게 보이도록(가상) 처리하는것이다
+        // [주의] 자바스크립트는 싱글스레드 방식을 사용,실제로 스레드를 나눌수는 없다
+
+
+        //첫번째 for문이 끝나야 두번째 for문이 끝나는 구조(동기-약속되어있음 , 메인스레드에서 동작)
+        for (let i = 0; i < 10; i++) {
+            console.log("Main thread 첫번째 for ...", i);
+        }
+        setInterval(() => {
+            for (let i = 0; i < 10; i++) {
+                console.log("Main thread 두번째 for...", i);
+            }
+            console.log("for2 종료")
+        }, 10000)
+        for (let i = 0; i < 10; i++) {
+            console.log("Main thread 세번째 for...", i);
+        }
+        console.log('for문 종료')
+    </script>
+
+</body>
+
+</html>

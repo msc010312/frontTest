@@ -1,0 +1,68 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            justify-content: space-between;
+            width: 1200px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+
+        .box>div {
+            border: 1px solid #333;
+            width: 300px;
+            height: 100%;
+        }
+
+        .main-thread {}
+
+        .sub1-thread {}
+
+        .sub2-thread {}
+    </style>
+</head>
+
+<body>
+    <div class="d1"></div>
+    <button onclick="start()">반복실행</button>
+    <button onclick="stop()">반복취소</button>
+
+    <div class="box">
+        <div class="main-thread"></div>
+        <div class="sub1-thread"></div>
+        <div class="sub2-thread"></div>
+    </div>
+
+    <script>
+        let id = null;
+        let cnt = 0;
+        const start = () => {
+            const d1 = document.querySelector('.d1')
+            id = setInterval(() => {
+                d1.innerHTML = (cnt++);
+            }, 1000);
+            console.log(id)
+        };
+
+        const stop = () => {
+            clearInterval(id);
+        };
+
+        const main = document.querySelector('.main-thread')
+        const sub1 = document.querySelector('.sub1-thread')
+        const sub2 = document.querySelector('.sub2-thread')
+        let cntt = 0;
+        setInterval(() => {
+            main.innerHTML += `main ${cntt++}<br/>`;
+        }, 1000)
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            display: flex;
+            justify-content: space-between;
+            width: 1200px;
+            height: 800px;
+            margin: 0 auto;
+            border: 1px solid #333;
+        }
+
+        .box>div {
+            border: 1px solid #333;
+            width: 300px;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="main-thread"></div>
+        <div class="sub1-thread"></div>
+        <div class="sub2-thread"></div>
+    </div>
+
+    <script>
+        // 동기 - 절차대로처리
+        // 비동기 - 절차를 지키지않음(쓰레드를 생성 후 독자적처리)
+
+        // async, await - 비동기처리 순서를 지정
+        // async - 해당함수가 비동기적인 처리를 하는 프로세스임을 암시
+        // await - async 블럭 내부에서 사용되며 비동기 작업이 완료시 까지 대기하는 예악어
+
+        // // 비동기처리 객체
+        // function subProcess(params) {
+        //     return new Promise((resolve, reject)=>{
+        //         setTimeout(()=>{
+        //             resolve(params);
+        //         }, 3000)
+        //     });
+        // }
+
+        // subProcess(1).then((response)=>{
+        //     console.log(response)
+        //     sub1.innerHTML = `sub1_${response}`
+        // }).catch((err)=>{
+        //     console.log(err)
+        // })
+
+        // subProcess(2).then((response)=>{
+        //     console.log(response)
+        //     sub2.innerHTML = `sub2_${response}`
+        // }).catch((err)=>{
+        //     console.log(err)
+        // })
+
+        const main = document.querySelector('.main-thread')
+        const sub1 = document.querySelector('.sub1-thread')
+        const sub2 = document.querySelector('.sub2-thread')
+
+        function subProcess(params) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(params);
+                }, 3000)
+            });
+        }
+
+        async function subProcessFunc(params) {
+            try {
+                const response1 = await subProcess(0);
+                main.innerHTML = `main ${response1}`;
+
+                const response2 = await subProcess(1);
+                sub1.innerHTML = `sub1_${response2}`;
+
+                const response3 = await subProcess(2);
+                sub2.innerHTML = `sub1_${response3}`;
+            } catch (err) {
+                console.error(err);
+            }
+        }
+        subProcessFunc()
+    </script>
+</body>
+
+</html>
