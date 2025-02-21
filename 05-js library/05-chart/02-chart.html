@@ -1,0 +1,121 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../js/matjip.js"></script>
+</head>
+
+<body>
+    <div style="width: 800px; height: 500px; margin: 0 auto; border: 1px solid #333;">
+        <canvas id="myChart"></canvas>
+    </div>
+    <script>
+        console.log(중구맛집)
+        //카테고리 추출, 카테고리별 식당 카운트
+        function extractDataSet(param) {
+            const total = param.total;
+            console.log(total)
+            const data = param.data;
+            //음식 카테고리 필터
+            const cate = data.map((item) => {
+                return item.FD_CS
+            }).sort((a, b) => {
+                return a.localeCompare(b)
+            }).reduce((acc, item) => {
+                if (acc[item] !== undefined) {
+                    acc[item]++;
+                } else {
+                    acc[item] = 0;
+                }
+                return acc;
+            }, {})
+            console.log(cate)
+            // key, value 분류
+            const keys = Object.keys(cate)
+            const values = Object.values(cate)
+            console.log(keys, values)
+
+            return {
+                "keys": keys,
+                "values": values,
+            }
+        }
+
+        function drawChart(title, obj, tag, type) {
+            const ctx = document.getElementById(tag);
+
+            let data = {
+                labels: obj.keys,
+                datasets: [
+
+                    {
+                        label: title,
+                        data: obj.values,
+                        borderWidth: 1,
+                        // backgroundColor:[
+                        //     'red','orange','yellow','green','blue','navy'
+                        // ],
+                        // borderColor: [
+                        //     'red', 'orange', 'yellow', 'green', 'blue', 'navy'
+                        // ],      
+                    }
+
+                ]
+            };
+            let options = {
+                animations: {
+                    // line 차트에만 적용
+                    // tension :{
+                    //     duration : 1000,
+                    //     easing : 'linear',
+                    //     from : 1,
+                    //     to:0,
+                    //     loop : true,
+                    // }
+                    //bar 에만 적용
+                    y: {
+                        duration: 500,
+                        easing: 'linear',
+                        loop: false,
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        // max : 100,
+                        // min : 0,
+                        // ticks : {
+                        //     stepSize : 5
+                        // }
+                    },
+                    x: {
+                        stacked: true,
+                        barPercentage: 1.0,
+                        categoryPercentage: 1.0
+
+                    }
+                },
+                onClick: (event, chartEl) => {
+                    console.log('clicked..', chartEl);
+                }
+
+            }
+
+            new Chart(ctx, {
+                type: type,    //bar , line , pie , doughnut , //  bubble , scatter , heatmap
+                data: data,
+                options: options
+            });
+
+        }
+        const result = extractDataSet(중구맛집)
+        console.log(result)
+        drawChart('중구맛집',result,'tag','myChart','pie')
+
+    </script>
+</body>
+
+</html>
